@@ -3,4 +3,7 @@
     <string name="choose_mode">You may not know that for good health, you need to exercise for at least 30 minutes a day. Choose a workout mode you need and get started</string>
     <string name="run">Run</string>
     <string name="walk">Walk</string>
+    <string name="time">Time</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
 </resources>
