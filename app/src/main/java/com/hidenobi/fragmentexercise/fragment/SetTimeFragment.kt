@@ -84,6 +84,8 @@ class SetTimeFragment : Fragment() {
                     .show()
             } else {
                 val intent = Intent(context, com.hidenobi.fragmentexercise.ExerciseActivity::class.java)
+                val time = (end.substring(0,2).toInt() - start.substring(0,2).toInt())*60*60 + (end.substring(3,5).toInt()*60 - start.substring(3,5).toInt()*60)
+                intent.putExtra("time", time)
                 startActivity(intent)
             }
         }

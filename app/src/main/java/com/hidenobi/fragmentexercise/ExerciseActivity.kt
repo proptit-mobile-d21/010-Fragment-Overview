@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import com.hidenobi.fragmentexercise.databinding.ActivityExerciseBinding
 
 class ExerciseActivity : AppCompatActivity() {
     private var timeSelected : Int = 0
@@ -15,29 +16,16 @@ class ExerciseActivity : AppCompatActivity() {
     private var timeProgress = 0
     private var pauseOffSet: Long = 0
     private var isStart = true
-
+    private lateinit var binding : ActivityExerciseBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exercise)
+        binding = ActivityExerciseBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-//        val addBtn: ImageButton = findViewById(R.id.btnAdd)
-//        addBtn.setOnClickListener {
-            setTimeFunction()
-//        }
-//        val startBtn: Button = findViewById(R.id.btnPlayPause)
-//        startBtn.setOnClickListener {
-            startTimerSetup()
-      //  }
 
-//        val resetBtn:ImageButton = findViewById(R.id.ib_reset)
-//        resetBtn.setOnClickListener {
-//            resetTime()
-//        }
-
-//        val addTimeTv: TextView = findViewById(R.id.tv_addTime)
-//        addTimeTv.setOnClickListener {
-//            addExtraTime()
-//        }
+        val time = intent.getIntExtra("time",100)
+        setTimeFunction(time)
+        startTimerSetup()
     }
 
 
@@ -51,10 +39,8 @@ class ExerciseActivity : AppCompatActivity() {
            // val startBtn:Button = findViewById(R.id.btnPlayPause)
            // startBtn.text ="Start"
             isStart = true
-            val progressBar = findViewById<ProgressBar>(R.id.pbTimer)
-            progressBar.progress = 0
-            val timeLeftTv: TextView = findViewById(R.id.tvTimeLeft)
-            timeLeftTv.text = "0"
+            binding.pbTimer.progress = 0
+            binding.tvTimeLeft.setText("00:00:00")
         }
     }
 
@@ -65,16 +51,15 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun startTimerSetup() {
-        val startBtn: Button = findViewById(R.id.btnPlayPause)
         if (timeSelected > timeProgress) {
             if (isStart) {
-                startBtn.text = "Pause"
+                binding.btnPlayPause.setText("Pause")
                 startTimer(pauseOffSet)
                 isStart = false
             }
             else {
                 isStart =true
-                startBtn.text = "Resume"
+                binding.btnPlayPause.setText("Resume")
                 timePause()
             }
         }
@@ -84,16 +69,26 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun startTimer(pauseOffSetL: Long) {
-        val progressBar = findViewById<ProgressBar>(R.id.pbTimer)
-        progressBar.progress = timeProgress
+        binding.pbTimer.progress = timeProgress
         timeCountDown = object :CountDownTimer(
             (timeSelected * 1000).toLong() - pauseOffSetL*1000, 1000) {
             override fun onTick(p0: Long) {
                 timeProgress++
                 pauseOffSet = timeSelected.toLong()- p0/1000
-                progressBar.progress = timeSelected-timeProgress
-                val timeLeftTv:TextView = findViewById(R.id.tvTimeLeft)
-                timeLeftTv.text = (timeSelected - timeProgress).toString()
+                binding.pbTimer.progress = timeSelected - timeProgress
+                var hour = ((timeSelected - timeProgress) / 3600).toString()
+                var min = (((timeSelected - timeProgress) % 3600) / 60).toString()
+                var sec = ((timeSelected - timeProgress) % 60).toString()
+                if (hour.toInt() < 10) {
+                    hour = "0$hour"
+                }
+                if (min.toInt() < 10) {
+                    min = "0$min"
+                }
+                if (sec.toInt() < 10) {
+                    sec = "0$sec"
+                }
+                binding.tvTimeLeft.text = "$hour:$min:$sec"
             }
 
             override fun onFinish() {
@@ -105,20 +100,20 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
 
-    private fun setTimeFunction() {
-        val timeLeftTv: TextView = findViewById(R.id.tvTimeLeft)
-        val btnStart: Button = findViewById(R.id.btnPlayPause)
-        val progressBar = findViewById<ProgressBar>(R.id.pbTimer)
+    private fun setTimeFunction(time : Int) {
         resetTime()
-        timeLeftTv.text = "10"
-        btnStart.text = "Start"
-        timeSelected = "10".toInt()
-        progressBar.max = timeSelected
+        val hour = time / 3600
+        val min = (time % 3600) / 60
+        val sec = time % 60
+        binding.tvTimeLeft.text = "$hour:$min:$sec"
+        binding.btnPlayPause.text = "Start"
+        timeSelected = time
+        binding.pbTimer.max = timeSelected
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if(timeCountDown!=null) {
+        if(timeCountDown != null) {
             timeCountDown?.cancel()
             timeProgress = 0
         }
