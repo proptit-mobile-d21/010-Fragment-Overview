@@ -1,5 +1,6 @@
 package com.hidenobi.fragmentexercise
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 //                setReorderingAllowed(true)
 //                replace<SetTimeFragment>(R.id.fragmentContainerView)
 //            }
+            val intent = Intent(this, ExerciseActivity::class.java)
+            startActivity(intent)
         }
 
 

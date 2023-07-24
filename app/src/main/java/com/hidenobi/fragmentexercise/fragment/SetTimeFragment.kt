@@ -2,6 +2,7 @@ package com.hidenobi.fragmentexercise.fragment
 
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -82,8 +83,8 @@ class SetTimeFragment : Fragment() {
                 Toast.makeText(context, "Start time must be before end time", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                Toast.makeText(context, "Start time: $start, End time: $end", Toast.LENGTH_SHORT)
-                    .show()
+                val intent = Intent(context, com.hidenobi.fragmentexercise.ExerciseActivity::class.java)
+                startActivity(intent)
             }
         }
 
