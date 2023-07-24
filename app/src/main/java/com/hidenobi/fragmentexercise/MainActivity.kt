@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
 import com.hidenobi.fragmentexercise.fragment.ExerciseFragment
-import com.hidenobi.fragmentexercise.fragment.SetTimeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding

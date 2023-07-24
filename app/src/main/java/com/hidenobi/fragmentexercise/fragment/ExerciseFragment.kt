@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.hidenobi.fragmentexercise.R
-import org.w3c.dom.Text
 
 
 class ExerciseFragment : Fragment() {
@@ -25,7 +22,7 @@ class ExerciseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imageViewRun = view?.findViewById<ImageView>(R.id.imgRun)
+        val imageViewRun = view.findViewById<ImageView>(R.id.imgRun)
 
         imageViewRun?.setOnClickListener{
             parentFragmentManager.commit {

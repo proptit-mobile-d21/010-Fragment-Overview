@@ -57,6 +57,9 @@
                    android:textColor="@color/white"/>
 
                <EditText
+                   android:id="@+id/edtStart"
+                   android:focusable="false"
+                   android:clickable="true"
                    android:layout_marginTop="16dp"
                    android:textColor="@color/white"
                    android:paddingHorizontal="10dp"
@@ -85,6 +88,9 @@
                    android:textColor="@color/white"/>
 
                <EditText
+                   android:id="@+id/edtEnd"
+                   android:focusable="false"
+                   android:clickable="true"
                    android:layout_marginTop="16dp"
                    android:textColor="@color/white"
                    android:paddingHorizontal="10dp"
@@ -97,6 +103,7 @@
        
    </LinearLayout>
     <Button
+        android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
