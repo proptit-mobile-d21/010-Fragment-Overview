@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_black"
+    tools:context=".SetTimeFragment">
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/time"
+        app:layout_constraintBottom_toBottomOf="@id/backBtn"
+        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintTop_toTopOf="@id/backBtn" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/startText"
+        style="@style/body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/start"
+        app:layout_constraintStart_toStartOf="@+id/backBtn"
+        app:layout_constraintTop_toBottomOf="@id/backBtn" />
+
+    <TextView
+        android:id="@+id/endText"
+        style="@style/body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/end"
+        app:layout_constraintStart_toStartOf="@+id/line"
+        app:layout_constraintTop_toTopOf="@id/startText" />
+
+    <EditText
+        android:id="@+id/startInput"
+        style="@style/input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="@id/line"
+        app:layout_constraintStart_toStartOf="@id/startText"
+        app:layout_constraintTop_toBottomOf="@id/startText"
+        tools:text="20:00" />
+
+    <EditText
+        android:id="@+id/endInput"
+        style="@style/input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/startInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/endText"
+        app:layout_constraintTop_toTopOf="@id/startInput"
+        tools:text="20:30" />
+
+    <TextView
+        android:id="@+id/startBtn"
+        style="@style/btnRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startInput" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

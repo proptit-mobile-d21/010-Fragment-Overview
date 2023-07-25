@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_black"
+    tools:context=".StartFragment">
+
+    <TextView
+        android:id="@+id/chooseText"
+        style="@style/body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="41.5dp"
+        android:layout_marginTop="114dp"
+        android:text="@string/choose_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/runBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="-17.5dp"
+        android:src="@drawable/run_icon"
+        app:layout_constraintEnd_toStartOf="@id/walkBtn"
+        app:layout_constraintStart_toStartOf="@id/chooseText"
+        app:layout_constraintTop_toBottomOf="@id/chooseText" />
+
+    <ImageView
+        android:id="@+id/walkBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/walk_icon"
+        android:layout_marginEnd="-17.5dp"
+        app:layout_constraintBottom_toBottomOf="@id/runBtn"
+        app:layout_constraintEnd_toEndOf="@id/chooseText"
+        app:layout_constraintStart_toEndOf="@id/runBtn"
+        app:layout_constraintTop_toTopOf="@id/runBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
