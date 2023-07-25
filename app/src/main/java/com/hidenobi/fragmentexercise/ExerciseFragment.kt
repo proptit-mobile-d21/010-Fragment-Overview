@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hidenobi.fragmentexercise.databinding.FragmentExerciseBinding
-import com.hidenobi.fragmentexercise.databinding.FragmentSetTimeBinding
+
 
 class ExerciseFragment : Fragment() {
 
@@ -23,7 +23,9 @@ class ExerciseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = arguments?.getString("action2")
-        binding.text.setText(data.toString())
+        val dataText = arguments?.getString("action2")
+        binding.textAct.setText(dataText.toString())
+        val dataTime = arguments?.getString("action3")
+        binding.textTime.setText("Time Left - " + dataTime.toString())
     }
 }

@@ -27,15 +27,17 @@ class SetTimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val data = arguments?.getString("action").toString()
+        val dataText = arguments?.getString("action").toString()
+        var dataTime : String
         val exerciseFragment = ExerciseFragment()
         val bundle = Bundle()
 
         binding.start.setOnClickListener {
-            bundle.putString("action2","$data")
+            dataTime = calculateDifference()
+            bundle.putString("action2","$dataText")
+            bundle.putString("action3", "$dataTime")
             exerciseFragment.arguments = bundle
-            
+
             requireFragmentManager().beginTransaction()
                 .replace(binding.fragmentSetTime.id, exerciseFragment)
                 .addToBackStack(null)
@@ -43,14 +45,14 @@ class SetTimeFragment : Fragment() {
         }
     }
 
-    private fun calculateDifference() {
+    private fun calculateDifference(): String {
         val startTimeStr = binding.startTime.text.toString()
         val endTimeStr = binding.endTime.text.toString()
 
         // Convert time strings to Date objects using SimpleDateFormat
         val timeFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
-        val startTime: Date = timeFormat.parse(startTimeStr) ?: return
-        val endTime: Date = timeFormat.parse(endTimeStr) ?: return
+        val startTime: Date = timeFormat.parse(startTimeStr)
+        val endTime: Date = timeFormat.parse(endTimeStr)
 
         // Calculate the time difference in milliseconds
         val timeDifferenceMillis = endTime.time - startTime.time
@@ -61,8 +63,7 @@ class SetTimeFragment : Fragment() {
 
         // Display the result (you can customize how to display or use the result)
         val result = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
-        //Log.d("Trung","$result")
-
+        return result
     }
 
 }
