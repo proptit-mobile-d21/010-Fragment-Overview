@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/primary_background"
+    android:clipToOutline="true"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:weightSum="10"
+    tools:context=".screen.SetTimeFragment">
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/rlSetTime"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="8dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHeight_percent="0.3"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="@string/start"/>
+
+        <TextView
+            android:textSize="14dp"
+            android:layout_width="0dp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/end" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <EditText
+            android:id="@+id/etStart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/text_background"
+            android:hint="Start Time"
+            android:padding="20dp"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/etEnd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/etStart"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:background="@drawable/text_background"
+            android:hint="End Time"
+            android:textColorHint="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/start"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_weight="0.5"
+        android:background="@drawable/primary_background"
+        android:backgroundTint="#1A87F7"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+
+
+<!--    </LinearLayout>-->
+
+
+</LinearLayout>
