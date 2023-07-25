@@ -11,22 +11,23 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.hidenobi.fragmentexercise.R
 import com.hidenobi.fragmentexercise.Type
+import com.hidenobi.fragmentexercise.databinding.FragmentExerciseFragmentBinding
 
 
 class ExerciseFragment : Fragment() {
 
+    private lateinit var binding : FragmentExerciseFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_exercise_fragment, container, false)
+        binding = FragmentExerciseFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imageViewRun = view.findViewById<ImageView>(R.id.imgRun)
-        val imageViewWalk = view.findViewById<ImageView>(R.id.imgWalk)
-        imageViewRun?.setOnClickListener{
+        binding.imgRun.setOnClickListener{
             val fragment = SetTimeFragment.newInstance(Type.RUN)
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, fragment)
@@ -34,7 +35,7 @@ class ExerciseFragment : Fragment() {
                 .commit()
 
         }
-        imageViewWalk?.setOnClickListener{
+        binding.imgWalk.setOnClickListener{
             val fragment = SetTimeFragment.newInstance(Type.WALK)
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, fragment)

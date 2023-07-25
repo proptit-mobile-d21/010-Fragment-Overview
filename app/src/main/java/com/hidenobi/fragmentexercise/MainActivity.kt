@@ -1,10 +1,8 @@
 package com.hidenobi.fragmentexercise
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding

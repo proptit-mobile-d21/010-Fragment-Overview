@@ -1,5 +1,6 @@
 package com.hidenobi.fragmentexercise.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -16,11 +17,6 @@ class RunAndWalkFragment : Fragment() {
     private var timeProgress = 0
     private var pauseOffSet: Long = 0
     private var isStart = true
-
-//    private var progressBar : ProgressBar? = null
-//    private var timeLeftTv: TextView? = null
-//    private var startBtn: Button? = null
-
     private lateinit var binding : FragmentRunBinding
     companion object{
         fun newInstance(time : Int, type : Type) = RunAndWalkFragment().apply {
@@ -34,7 +30,7 @@ class RunAndWalkFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRunBinding.inflate(inflater, container, false)
         return binding.root
@@ -60,6 +56,7 @@ class RunAndWalkFragment : Fragment() {
         }
     }
 
+        @SuppressLint("SetTextI18n")
         private fun resetTime() {
         if (timeCountDown != null) {
             timeCountDown!!.cancel()
@@ -71,7 +68,7 @@ class RunAndWalkFragment : Fragment() {
            // startBtn.text ="Start"
             isStart = true
             binding.pbTimer.progress = 0
-            binding.tvTimeLeft.setText("00:00:00")
+            binding.tvTimeLeft.text = "00:00:00"
         }
     }
 
@@ -81,6 +78,7 @@ class RunAndWalkFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun startTimerSetup() {
         if (timeSelected > timeProgress) {
             if (isStart) {
@@ -103,6 +101,7 @@ class RunAndWalkFragment : Fragment() {
         binding.pbTimer.progress = timeProgress
         timeCountDown = object :CountDownTimer(
             (timeSelected * 1000).toLong() - pauseOffSetL*1000, 1000) {
+            @SuppressLint("SetTextI18n")
             override fun onTick(p0: Long) {
                 timeProgress++
                 pauseOffSet = timeSelected.toLong()- p0/1000
@@ -131,6 +130,7 @@ class RunAndWalkFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun setTimeFunction(time : Int) {
         resetTime()
         val hour = time / 3600
