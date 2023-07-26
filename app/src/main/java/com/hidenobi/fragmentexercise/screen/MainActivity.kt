@@ -1,4 +1,4 @@
-package com.hidenobi.fragmentexercise
+package com.hidenobi.fragmentexercise.screen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,8 @@ import androidx.fragment.app.commit
 import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
 import com.hidenobi.fragmentexercise.model.Exercise
 import com.hidenobi.fragmentexercise.model.Time
+import com.hidenobi.fragmentexercise.screen.fragment.SetTimeFragment
+import com.hidenobi.fragmentexercise.screen.fragment.StartExerciseFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             replace(
                 binding.root.id,
-                SetTimeFragment.newInstance{startTime, endTime -> setTimeOnFinish(startTime, endTime)}
+                SetTimeFragment.newInstance{ startTime, endTime -> setTimeOnFinish(startTime, endTime)}
             )
             setReorderingAllowed(true)
             addToBackStack("start_exercise")

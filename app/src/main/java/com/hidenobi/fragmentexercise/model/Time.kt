@@ -1,7 +1,6 @@
 package com.hidenobi.fragmentexercise.model
 
 import java.lang.Exception
-import kotlin.math.min
 
 class Time(hourOfDay: Int, minute: Int) {
     var hourOfDay: Int = 0

@@ -1,16 +1,17 @@
-package com.hidenobi.fragmentexercise
+package com.hidenobi.fragmentexercise.screen.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.hidenobi.fragmentexercise.databinding.FragmentStartExerciseBinding
 import com.hidenobi.fragmentexercise.model.Exercise
 
 typealias StartExerciseOnClick = (type: Exercise.Type) -> Unit
 
 class StartExerciseFragment : Fragment() {
+
     companion object {
         @JvmStatic
         fun newInstance(exerciseOnClick: StartExerciseOnClick) =
