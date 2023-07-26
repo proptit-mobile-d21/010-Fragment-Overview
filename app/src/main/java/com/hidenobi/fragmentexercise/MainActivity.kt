@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTimeOnFinish(startTime: Time, endTime: Time) {
+        exercise.startTime = startTime
+        exercise.endTime = endTime
         // For testing only
         Toast.makeText(
             applicationContext,

@@ -4,16 +4,21 @@ import java.lang.Exception
 import kotlin.math.min
 
 class Time(hourOfDay: Int, minute: Int) {
-    var hourOfDay: Int = hourOfDay
+    var hourOfDay: Int = 0
         set(value) { field = value % 24 }
 
-    var minute: Int = minute
+    var minute: Int = 0
         set(value) {
-            field = if (value > 60) {
-                hourOfDay++
-                0
+            field = if (value >= 60) {
+                hourOfDay += value / 60
+                value % 60
             } else value
         }
+
+    init {
+        this.hourOfDay = hourOfDay
+        this.minute = minute
+    }
 
     fun toMinute(): Int = hourOfDay*60 + minute
 
