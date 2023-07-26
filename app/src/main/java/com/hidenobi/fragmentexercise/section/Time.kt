@@ -1,5 +1,7 @@
 package com.hidenobi.fragmentexercise.section
 
+import android.util.Log
+import android.widget.Toast
 import java.time.LocalTime
 import java.util.regex.Pattern
 
@@ -17,5 +19,30 @@ object Time {
         val sTime = LocalTime.parse(start)
         val eTime = LocalTime.parse(end)
         return sTime.isBefore(eTime)
+    }
+
+    fun convertToValideTime(time: Int): String{
+        var resTime = time.toString()
+        if(resTime.length == 1){
+            resTime = "0" + resTime
+        }
+        return resTime
+    }
+
+    fun minusTime(start: String?, end: String?): String {
+        var sTime = LocalTime.parse(start)
+        var eTime = LocalTime.parse(end)
+        eTime = eTime.minusHours(sTime.hour.toLong())
+        eTime = eTime.minusMinutes(sTime.minute.toLong())
+        Log.d("Checkingg", sTime.hour.toString())
+        Log.d("Checkingg", sTime.toString())
+        Log.d("Checkingg", eTime.hour.toString())
+        Log.d("Checkingg", eTime.toString())
+        return eTime.toString()
+    }
+
+    fun countDown(time: LocalTime): LocalTime {
+        time.minusMinutes(1)
+        return time
     }
 }
