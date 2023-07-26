@@ -1,14 +1,19 @@
 package com.hidenobi.fragmentexercise.screen
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.hidenobi.fragmentexercise.R
 import com.hidenobi.fragmentexercise.databinding.FragmentSetTimeBinding
+import com.hidenobi.fragmentexercise.modelView.FragmentViewModel
+import com.hidenobi.fragmentexercise.section.Time
 
 /**
  * A simple [Fragment] subclass.
@@ -19,6 +24,9 @@ class SetTimeFragment : Fragment() {
     private lateinit var binding: FragmentSetTimeBinding
     private lateinit var btnBack: ImageView
     private lateinit var btnStart: TextView
+    private lateinit var etStart: EditText
+    private lateinit var etEnd: EditText
+    private val viewModel: FragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +43,8 @@ class SetTimeFragment : Fragment() {
     private fun initComponent() {
         btnBack = binding.btnBack
         btnStart = binding.btnStart
+        etStart = binding.etStart
+        etEnd = binding.etEnd
     }
 
     private fun setupClickListener() {
@@ -46,10 +56,21 @@ class SetTimeFragment : Fragment() {
         }
 
         btnStart.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, excerciseFragment)
-                addToBackStack(null)
-                commit()
+            val startTime = etStart.text.toString()
+            val endTime = etEnd.text.toString()
+            if(Time.checkValidTime(startTime, endTime)){
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.flFragment, excerciseFragment)
+                    addToBackStack(null)
+                    commit()
+                }
+            }else{
+                val dialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Error")
+                    .setMessage("Invalid Time input!")
+                    .setPositiveButton("OK", null)
+                    .create()
+                dialog.show()
             }
         }
     }
