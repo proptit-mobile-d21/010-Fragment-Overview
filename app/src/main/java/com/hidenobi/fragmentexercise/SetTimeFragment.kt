@@ -32,16 +32,37 @@ class SetTimeFragment : Fragment() {
         val exerciseFragment = ExerciseFragment()
         val bundle = Bundle()
 
+        binding.check.setOnClickListener {
+            if(binding.startTime.text.toString().isEmpty() || binding.endTime.text.toString().isEmpty()){
+                Toast.makeText(context, "Vui lòng nhập thời gian", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                check()
+            }
+        }
         binding.start.setOnClickListener {
-            dataTime = calculateDifference()
-            bundle.putString("action2","$dataText")
-            bundle.putLong("action3", dataTime)
-            exerciseFragment.arguments = bundle
+            if(binding.startTime.text.toString().isEmpty() || binding.endTime.text.toString().isEmpty()){
+                Toast.makeText(context, "Vui lòng nhập thời gian", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                check()
+                dataTime = calculateDifference()
+                if(dataTime < 0){
+                    Toast.makeText(context, "Vui lòng nhập lại thời gian", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    bundle.putString("action2","$dataText")
+                    bundle.putLong("action3", dataTime)
+                    exerciseFragment.arguments = bundle
 
-            requireFragmentManager().beginTransaction()
-                .replace(binding.fragmentSetTime.id, exerciseFragment)
-                .addToBackStack(null)
-                .commit()
+                    requireActivity()
+                        .supportFragmentManager
+                        .beginTransaction()
+                        .replace(binding.fragmentSetTime.id, exerciseFragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
         }
     }
 
@@ -55,4 +76,14 @@ class SetTimeFragment : Fragment() {
         return timeLeft/1000
     }
 
+    private fun check(){
+        val format = SimpleDateFormat("mm:ss", Locale.getDefault())
+        val start = format.parse(binding.startTime.text.toString()).time
+        val startStr = format.format(Date(start))
+        binding.startTime.setText(startStr.toString())
+
+        val end = format.parse(binding.endTime.text.toString()).time
+        val endStr= format.format(Date(end))
+        binding.endTime.setText(endStr.toString())
+    }
 }
