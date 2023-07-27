@@ -1,10 +1,12 @@
-package com.hidenobi.fragmentexercise
+package com.hidenobi.fragmentexercise.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hidenobi.fragmentexercise.model.Exercise
+import com.hidenobi.fragmentexercise.R
 import com.hidenobi.fragmentexercise.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
@@ -22,19 +24,24 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.runBtn.setOnClickListener {
-            select()
+            select(Exercise.RUN)
         }
         binding.walkBtn.setOnClickListener {
-            select()
+            select(Exercise.WALK)
         }
     }
 
-    private fun select() {
-        val setTimeFragment = SetTimeFragment()
+    private fun select(exercise: Exercise) {
+        val setTimeFragment = SetTimeFragment.newInstance(exercise)
         parentFragmentManager
             .beginTransaction()
             .add(R.id.mainLayout, setTimeFragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

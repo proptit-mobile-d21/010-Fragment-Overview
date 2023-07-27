@@ -5,4 +5,5 @@
     <color name="light_black">#212121</color>
     <color name="blue">#1A87F7</color>
     <color name="gray">#828282</color>
+    <color name="transparent_white">#30FFFFFF</color>
 </resources>
