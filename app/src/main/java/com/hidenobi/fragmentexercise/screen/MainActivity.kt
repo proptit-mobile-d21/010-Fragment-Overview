@@ -1,14 +1,16 @@
 package com.hidenobi.fragmentexercise.screen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
 import com.hidenobi.fragmentexercise.model.Exercise
 import com.hidenobi.fragmentexercise.model.Time
+import com.hidenobi.fragmentexercise.screen.fragment.ExerciseFragment
 import com.hidenobi.fragmentexercise.screen.fragment.SetTimeFragment
 import com.hidenobi.fragmentexercise.screen.fragment.StartExerciseFragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Transparent status and navigation bar, fullscreen background
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
 
         supportFragmentManager.commit {
             replace(
@@ -46,11 +54,13 @@ class MainActivity : AppCompatActivity() {
     private fun setTimeOnFinish(startTime: Time, endTime: Time) {
         exercise.startTime = startTime
         exercise.endTime = endTime
-        // For testing only
-        Toast.makeText(
-            applicationContext,
-            "Cooldown: ${Time.timeBetween(startTime, endTime).toMinute()} minutes",
-            Toast.LENGTH_SHORT
-        ).show()
+        supportFragmentManager.commit {
+            replace(
+                binding.root.id,
+                ExerciseFragment.newInstance(exercise)
+            )
+            setReorderingAllowed(true)
+            addToBackStack("set_time")
+        }
     }
 }
