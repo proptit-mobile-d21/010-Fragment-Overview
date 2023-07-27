@@ -39,11 +39,13 @@ class TimerProgress(time: Time) {
         lastCountDownTime = countDownTime
         startNewCountDown()
         countDownTimer?.start()
+        isPause = false
     }
 
     fun resume() {
         startNewCountDown()
         countDownTimer?.start()
+        isPause = false
     }
 
     fun pause() {

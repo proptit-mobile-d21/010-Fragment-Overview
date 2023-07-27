@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import com.hidenobi.fragmentexercise.R
 import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
 import com.hidenobi.fragmentexercise.model.Exercise
 import com.hidenobi.fragmentexercise.model.Time
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         supportFragmentManager.commit {
+            setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
             replace(
                 binding.root.id,
                 StartExerciseFragment.newInstance { startExerciseOnClick(it) }
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun startExerciseOnClick(type: Exercise.Type) {
         exercise.type = type
         supportFragmentManager.commit {
+            setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
             replace(
                 binding.root.id,
                 SetTimeFragment.newInstance{ startTime, endTime -> setTimeOnFinish(startTime, endTime)}
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         exercise.startTime = startTime
         exercise.endTime = endTime
         supportFragmentManager.commit {
+            setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
             replace(
                 binding.root.id,
                 ExerciseFragment.newInstance(exercise)
