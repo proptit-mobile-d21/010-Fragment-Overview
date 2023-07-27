@@ -6,4 +6,6 @@
     <string name="time">Time</string>
     <string name="start">Start</string>
     <string name="end">End</string>
+    <string name="time_left">Time left - %02d:%02d</string>
+    <string name="time_count">%02d:%02d</string>
 </resources>

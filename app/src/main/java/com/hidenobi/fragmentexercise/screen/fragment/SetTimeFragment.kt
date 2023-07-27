@@ -94,9 +94,9 @@ class SetTimeFragment : Fragment() {
             Time.timeBetween(startTime, endTime)
         } catch (e: Time.InvalidEndTime) {
             Toast.makeText(context, "Thời gian kết thúc không hợp lệ!", Toast.LENGTH_SHORT).show()
+            endTime.hourOfDay = startTime.hourOfDay
+            endTime.minute = startTime.minute + 5
         }
-        endTime.hourOfDay = startTime.hourOfDay
-        endTime.minute = startTime.minute + 5
     }
 
     override fun onDestroyView() {

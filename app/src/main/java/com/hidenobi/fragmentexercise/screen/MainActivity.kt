@@ -8,6 +8,7 @@ import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
 import com.hidenobi.fragmentexercise.model.Exercise
 import com.hidenobi.fragmentexercise.model.Time
 import com.hidenobi.fragmentexercise.screen.fragment.ExerciseFragment
+import com.hidenobi.fragmentexercise.screen.fragment.FragmentStack
 import com.hidenobi.fragmentexercise.screen.fragment.SetTimeFragment
 import com.hidenobi.fragmentexercise.screen.fragment.StartExerciseFragment
 
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 StartExerciseFragment.newInstance { startExerciseOnClick(it) }
             )
             setReorderingAllowed(true)
-            addToBackStack(null)
+            addToBackStack(FragmentStack.BEGIN)
         }
     }
 
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 SetTimeFragment.newInstance{ startTime, endTime -> setTimeOnFinish(startTime, endTime)}
             )
             setReorderingAllowed(true)
-            addToBackStack("start_exercise")
+            addToBackStack(FragmentStack.START_EXERCISE)
         }
     }
 
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 ExerciseFragment.newInstance(exercise)
             )
             setReorderingAllowed(true)
-            addToBackStack("set_time")
+            addToBackStack(FragmentStack.SET_TIME)
         }
     }
 }
