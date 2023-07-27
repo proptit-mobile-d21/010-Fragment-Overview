@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:paddingBottom="32dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screen.fragment.ExerciseFragment"
+    tools:background="@drawable/run_background">
+
+    <TextView
+        android:id="@+id/exercise_time_left_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="32dp"
+        style="@style/text_regular"
+        android:textSize="18sp"
+        tools:text="Time left - 23:59"/>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/exercise_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/exercise_time_left_txt"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="74dp"
+        app:trackColor="@android:color/transparent"
+        app:indicatorColor="@color/white"
+        app:indicatorSize="288dp"
+        app:trackThickness="24dp"
+        app:trackCornerRadius="20dp"
+        android:background="@drawable/circular_progress_bar"
+        tools:progress="30"/>
+
+    <TextView
+        android:id="@+id/exercise_type_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/exercise_time_count_txt"
+        app:layout_constraintRight_toRightOf="@id/exercise_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@id/exercise_progress_bar"
+        android:layout_marginBottom="8dp"
+        android:textAllCaps="true"
+        style="@style/text_regular"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="@string/run"/>
+
+    <TextView
+        android:id="@+id/exercise_time_count_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/exercise_progress_bar"
+        app:layout_constraintBottom_toBottomOf="@id/exercise_progress_bar"
+        app:layout_constraintRight_toRightOf="@id/exercise_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@id/exercise_progress_bar"
+        android:textStyle="bold"
+        style="@style/text_regular"
+        android:textSize="48sp"
+        tools:text="01:58" />
+
+    <TextView
+        android:id="@+id/exercise_track_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/exercise_time_count_txt"
+        app:layout_constraintRight_toRightOf="@id/exercise_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@id/exercise_progress_bar"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="true"
+        style="@style/text_regular"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="11/17"/>
+
+    <ImageView
+        android:id="@+id/exercise_pause_btn"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:src="@drawable/pause_icon"
+        android:padding="24dp"
+        android:background="@drawable/circular_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="24dp"/>
+
+    <ImageView
+        android:id="@+id/exercise_location_btn"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:padding="16dp"
+        android:src="@drawable/location_icon"
+        android:background="@drawable/circular_button"
+        app:layout_constraintBottom_toBottomOf="@id/exercise_pause_btn"
+        app:layout_constraintTop_toTopOf="@id/exercise_pause_btn"
+        app:layout_constraintRight_toLeftOf="@id/exercise_pause_btn"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageView
+        android:id="@+id/exercise_lock_btn"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:padding="16dp"
+        android:src="@drawable/lock_icon"
+        android:background="@drawable/circular_button"
+        app:layout_constraintBottom_toBottomOf="@id/exercise_pause_btn"
+        app:layout_constraintTop_toTopOf="@id/exercise_pause_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/exercise_pause_btn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
