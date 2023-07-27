@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".FragmentStartExercise">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_start_exercise"
+        android:textSize="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="48dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/btnrun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/text"
+        android:background="@drawable/run_exercise"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/btnwalk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/text"
+        android:background="@drawable/walk_exercise"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="40dp"/>
+
+
+
+</RelativeLayout>

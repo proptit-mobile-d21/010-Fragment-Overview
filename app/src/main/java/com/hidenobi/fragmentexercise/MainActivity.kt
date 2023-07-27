@@ -1,11 +1,23 @@
 package com.hidenobi.fragmentexercise
 
+import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
+import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.framelayout1.id, FragmentStartExercise())
+            addToBackStack(null)
+            commit()
+        }
     }
 }
