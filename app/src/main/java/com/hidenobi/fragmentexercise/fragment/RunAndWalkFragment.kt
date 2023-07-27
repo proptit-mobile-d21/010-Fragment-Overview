@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.DialogTitle
 import com.hidenobi.fragmentexercise.Type
 import com.hidenobi.fragmentexercise.databinding.FragmentRunBinding
 
@@ -42,9 +43,6 @@ class RunAndWalkFragment : Fragment() {
         val type = arguments?.getString("type")
         Toast.makeText(context, "$time", Toast.LENGTH_SHORT).show()
 
-//        progressBar = view.findViewById(R.id.pbTimer)
-//        timeLeftTv = view.findViewById(R.id.tvTimeLeft)
-//        startBtn = view.findViewById(R.id.btnPlayPause)
         binding.tvType.text = type
         if (time != null) {
             setTimeFunction(time)
@@ -64,8 +62,6 @@ class RunAndWalkFragment : Fragment() {
             timeSelected = 0
             pauseOffSet = 0
             timeCountDown = null
-           // val startBtn:Button = findViewById(R.id.btnPlayPause)
-           // startBtn.text ="Start"
             isStart = true
             binding.pbTimer.progress = 0
             binding.tvTimeLeft.text = "00:00:00"
@@ -124,6 +120,7 @@ class RunAndWalkFragment : Fragment() {
             override fun onFinish() {
                 resetTime()
                 Toast.makeText(context,"Times Up!", Toast.LENGTH_SHORT).show()
+
             }
 
         }.start()
