@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor">#212121</color>
     <color name="textStroke">#828282</color>
+    <color name="topWalkColor">#0064C5</color>
+    <color name="botWalkColor">#3FA8F8</color>
+    <color name="topRunColor">#EE373F</color>
+    <color name="botRunColor">#FD9801</color>
 </resources>

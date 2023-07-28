@@ -44,6 +44,7 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
 
         return binding.root
     }
+
     private fun initComponent() {
         btnBack = binding.btnBack
         btnStart = binding.btnStart
@@ -53,7 +54,7 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
 
     private fun setupClickListener() {
         val excerciseFragment = ExcerciseFragment()
-        val timePickerDialog = TimePickerDialog(requireContext(),this, 0, 0, true)
+        val timePickerDialog = TimePickerDialog(requireContext(), this, 0, 0, true)
 
         etStart.setOnClickListener {
 //            timePickerDialog.setO
@@ -62,7 +63,7 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         }
 
         etEnd.setOnClickListener {
-            val timePickerDialogEnd = TimePickerDialog(requireContext(),this, 0, 0, true)
+            val timePickerDialogEnd = TimePickerDialog(requireContext(), this, 0, 0, true)
             viewModel.setCheckTime(false)
             timePickerDialog.show()
         }
@@ -74,7 +75,7 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         btnStart.setOnClickListener {
             val startTime = etStart.text.toString()
             val endTime = etEnd.text.toString()
-            if(Time.checkValidTime(startTime, endTime)){
+            if (Time.checkValidTime(startTime, endTime)) {
                 viewModel.setStartTime(startTime)
                 viewModel.setEndTime(endTime)
                 requireActivity().supportFragmentManager.beginTransaction().apply {
@@ -82,7 +83,7 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
                     addToBackStack(null)
                     commit()
                 }
-            }else{
+            } else {
                 val dialog = AlertDialog.Builder(requireContext())
                     .setTitle("Error")
                     .setMessage("Invalid Time input!")
@@ -94,10 +95,12 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        if(viewModel.getCheckTime){
-            etStart.text = Time.convertToValideTime(hourOfDay) + ":" + Time.convertToValideTime(minute)
-        }else{
-            etEnd.text = Time.convertToValideTime(hourOfDay) + ":" + Time.convertToValideTime(minute)
+        if (viewModel.getCheckTime) {
+            etStart.text =
+                Time.convertToValideTime(hourOfDay) + ":" + Time.convertToValideTime(minute)
+        } else {
+            etEnd.text =
+                Time.convertToValideTime(hourOfDay) + ":" + Time.convertToValideTime(minute)
         }
 
     }

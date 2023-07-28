@@ -14,6 +14,8 @@ class FragmentViewModel : ViewModel() {
     val getEndTime: String get() = endTime
     private var checkTime: Boolean = false
     val getCheckTime: Boolean get() = checkTime
+    private var excerciseType: Int = 0
+    val getExcerciseType: Int get() = excerciseType
     fun setStartTime(time: String){
         startTime = time
     }
@@ -24,6 +26,10 @@ class FragmentViewModel : ViewModel() {
 
     fun setCheckTime(res: Boolean){
         checkTime = res
+    }
+
+    fun setExcerciseType(type: Int){
+        excerciseType = type
     }
 
 }

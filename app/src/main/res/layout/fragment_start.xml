@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@drawable/primary_background"
     android:backgroundTint="@color/primaryColor"
+    android:gravity="center"
     android:padding="34dp"
     tools:context=".screen.StartFragment">
 
@@ -15,8 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:lines="4"
         android:gravity="center"
+        android:lines="4"
         android:text="@string/note"
         android:textColor="@color/white"
         android:textSize="16dp"
@@ -27,22 +27,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintEnd_toEndOf="parent"
         android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:id="@+id/llRun"
             android:layout_width="0dp"
-            android:gravity="center"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@drawable/primary_background"
             android:backgroundTint="@color/white"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/ivRun"
@@ -54,23 +54,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:textStyle="bold"
                 android:layout_weight="1"
-                android:text="@string/run" />
+                android:gravity="center"
+                android:text="@string/run"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llWalk"
             android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
             android:background="@drawable/primary_background"
             android:backgroundTint="@color/white"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -81,15 +82,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:textStyle="bold"
                 android:layout_weight="1"
-                android:text="@string/walk" />
+                android:gravity="center"
+                android:text="@string/walk"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

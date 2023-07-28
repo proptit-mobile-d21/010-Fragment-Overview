@@ -1,5 +1,6 @@
 package com.hidenobi.fragmentexercise.screen
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hidenobi.fragmentexercise.R
@@ -44,13 +47,17 @@ class ExcerciseFragment : Fragment() {
 
     private fun startTime() {
 
-        val timer = object :CountDownTimer(Time.convertToMillisec(timeDuration).toLong(), 1000){
+        val timer = object : CountDownTimer(Time.convertToMillisec(timeDuration).toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
 //
                 val mins = millisUntilFinished / 60000;
                 val secs = (millisUntilFinished % 60000) / 1000;
                 val time = String.format("%02d:%02d", mins, secs)
                 tvTimeLeft.text = time
+                val minsPassed = timeDuration.minute.minus(mins)-1
+                val secsPassed = 60 - secs-1
+                val timePassed = String.format("%02d:%02d", minsPassed, secsPassed)
+                tvTimePassed.text = timePassed
             }
 
             override fun onFinish() {
@@ -64,6 +71,7 @@ class ExcerciseFragment : Fragment() {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun initComponent() {
         tvTimeLeft = binding.tvTimeLeft
         tvDate = binding.tvDate
@@ -76,7 +84,14 @@ class ExcerciseFragment : Fragment() {
         startTime = viewModel.getStartTime
         endTime = viewModel.getEndTime
         timeDuration = Time.minusTime(LocalTime.parse(startTime), LocalTime.parse(endTime))
-        Log.d("StartTime", startTime)
+        Log.d("Type", viewModel.getExcerciseType.toString())
+        if (viewModel.getExcerciseType == 2) {
+            binding.root.background = resources.getDrawable(R.drawable.run_background)
+            tvRorW.text = resources.getString(R.string.run)
+        } else {
+            binding.root.background = resources.getDrawable(R.drawable.walk_background)
+            tvRorW.text = resources.getString(R.string.walk)
+        }
     }
 
 
