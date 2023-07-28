@@ -1,11 +1,8 @@
 package com.hidenobi.fragmentexercise
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.hidenobi.fragmentexercise.databinding.ActivityMainBinding
-import com.hidenobi.fragmentexercise.fragment.ExerciseFragment
-import com.hidenobi.fragmentexercise.fragment.SetTimeFragment
 import com.hidenobi.fragmentexercise.fragment.StartFragment
 
 class MainActivity : AppCompatActivity() {

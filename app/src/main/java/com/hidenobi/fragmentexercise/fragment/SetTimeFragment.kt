@@ -1,26 +1,23 @@
 package com.hidenobi.fragmentexercise.fragment
 
 import android.app.TimePickerDialog
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.hidenobi.fragmentexercise.model.Exercise
 import com.hidenobi.fragmentexercise.R
 import com.hidenobi.fragmentexercise.databinding.FragmentSetTimeBinding
-import com.hidenobi.fragmentexercise.model.Time
+import com.hidenobi.fragmentexercise.model.Exercise
+import com.hidenobi.fragmentexercise.utils.FormatTime
 
 class SetTimeFragment : Fragment() {
     private var _binding: FragmentSetTimeBinding? = null
     private val binding get() = _binding!!
     private lateinit var exercise: Exercise
-    private var startTime: Time = Time(0, 0)
-    private var endTime: Time = Time(0, 1)
+    private var startTime: Long = FormatTime.hourAndMinuteToMillis(0, 0)
+    private var endTime: Long = FormatTime.hourAndMinuteToMillis(0, 1)
 
     companion object {
         fun newInstance(exercise: Exercise): Fragment {
@@ -35,13 +32,13 @@ class SetTimeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSetTimeBinding.inflate(inflater, container, false)
-        binding.startInput.text = startTime.toString()
-        binding.endInput.text = endTime.toString()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.startInput.text = FormatTime.millisToHourAndMinute(startTime)
+        binding.endInput.text = FormatTime.millisToHourAndMinute(endTime)
         binding.backBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -50,22 +47,21 @@ class SetTimeFragment : Fragment() {
         }
         binding.startInput.setOnClickListener {
             TimePickerDialog(context, { view, hourOfDay, minute ->
-                startTime = Time(hourOfDay, minute)
-                binding.startInput.text = startTime.toString()
+                startTime = FormatTime.hourAndMinuteToMillis(hourOfDay, minute)
+                binding.startInput.text = FormatTime.millisToHourAndMinute(startTime)
             }, 0, 0, true).show()
         }
         binding.endInput.setOnClickListener {
             TimePickerDialog(context, { view, hourOfDay, minute ->
-                endTime = Time(hourOfDay, minute)
-                binding.endInput.text = endTime.toString()
+                endTime = FormatTime.hourAndMinuteToMillis(hourOfDay, minute)
+                binding.endInput.text = FormatTime.millisToHourAndMinute(endTime)
             }, 0, 0, true).show()
         }
     }
 
-
     private fun start() {
-        val counter = endTime - startTime
-        if (counter.hour < 0) {
+        val countDownTime = endTime - startTime
+        if (countDownTime <= 0) {
             Toast.makeText(
                 context,
                 "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
@@ -73,7 +69,7 @@ class SetTimeFragment : Fragment() {
             ).show()
             return
         }
-        val exerciseFragment = ExerciseFragment.newInstance(exercise, counter)
+        val exerciseFragment = ExerciseFragment.newInstance(exercise, countDownTime)
         parentFragmentManager
             .beginTransaction()
             .replace(R.id.mainLayout, exerciseFragment)
