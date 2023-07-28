@@ -29,6 +29,12 @@ class FragmentExercise : Fragment() {
         setFragmentResultListener("data"){ requestKey, bundle ->
             val result = bundle.getString("key")
             binding.maintext.text = result
+            if(result=="Run"){
+                binding.root.setBackgroundResource(R.color.bg_run)
+            } else{
+                binding.root.setBackgroundResource(R.color.bg_walk)
+
+            }
         }
     }
 

@@ -6,4 +6,6 @@
     <color name="gray_outline">#828282</color>
     <color name="bg_walk">#1499FF</color>
     <color name="bg_run">#FD9801</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_transparent">#33FFFFFF</color>
 </resources>
