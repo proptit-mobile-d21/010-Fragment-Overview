@@ -9,4 +9,7 @@
     <string name="time">Time</string>
     <string name="start">Start</string>
     <string name="end">End</string>
+    <string name="mile">Mile</string>
+    <string name="min">Min/mi</string>
+    <string name="kcal">Kcal</string>
 </resources>
