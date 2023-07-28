@@ -7,28 +7,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hidenobi.fragmentexercise.R
 import com.hidenobi.fragmentexercise.databinding.FragmentExcerciseBinding
-import com.hidenobi.fragmentexercise.databinding.FragmentStartBinding
 import com.hidenobi.fragmentexercise.modelView.FragmentViewModel
 import com.hidenobi.fragmentexercise.section.Time
 import java.time.LocalTime
-import java.util.Locale
 
 class ExcerciseFragment : Fragment() {
     private lateinit var binding: FragmentExcerciseBinding
     private lateinit var tvTimeLeft: TextView
     private lateinit var tvRorW: TextView
     private lateinit var tvDate: TextView
+    private lateinit var btnPause: ImageView
     private lateinit var tvTimePassed: TextView
     private lateinit var timeDuration: LocalTime
+    private lateinit var progressBar: ProgressBar
     private var startTime: String = ""
     private var endTime: String = ""
     private val viewModel: FragmentViewModel by activityViewModels()
@@ -54,14 +52,19 @@ class ExcerciseFragment : Fragment() {
                 val secs = (millisUntilFinished % 60000) / 1000;
                 val time = String.format("%02d:%02d", mins, secs)
                 tvTimeLeft.text = time
-                val minsPassed = timeDuration.minute.minus(mins)-1
-                val secsPassed = 60 - secs-1
+                val minsPassed = timeDuration.minute.minus(mins) - 1
+                val secsPassed = 60 - secs
                 val timePassed = String.format("%02d:%02d", minsPassed, secsPassed)
                 tvTimePassed.text = timePassed
+                val currentProgress = timeDuration.toSecondOfDay() - (millisUntilFinished/1000).toInt()
+                Log.d("Progress", currentProgress.toString())
+                progressBar.progress = currentProgress
+                progressBar.max = timeDuration.toSecondOfDay()
             }
 
             override fun onFinish() {
-                tvTimeLeft.text = "Done"
+                tvTimePassed.text = "00:00"
+                tvTimeLeft.text = "00:00"
             }
         }
         timer.start()
@@ -77,14 +80,12 @@ class ExcerciseFragment : Fragment() {
         tvDate = binding.tvDate
         tvRorW = binding.tvRorW
         tvTimePassed = binding.tvTimePassed
-
-//        viewModel.getStartTime.observe(viewLifecycleOwner) {
-//            startTime = it
-//        }
+        btnPause = binding.btnPause
+        progressBar = binding.pbCountDown
         startTime = viewModel.getStartTime
         endTime = viewModel.getEndTime
         timeDuration = Time.minusTime(LocalTime.parse(startTime), LocalTime.parse(endTime))
-        Log.d("Type", viewModel.getExcerciseType.toString())
+
         if (viewModel.getExcerciseType == 2) {
             binding.root.background = resources.getDrawable(R.drawable.run_background)
             tvRorW.text = resources.getString(R.string.run)

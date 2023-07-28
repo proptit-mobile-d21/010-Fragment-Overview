@@ -42,9 +42,8 @@ object Time {
     }
 
     fun convertToMillisec(time: LocalTime): Int {
-        val min = time.minute
-        val sec = time.second
-        val millisec: Int = min*60000 + sec*1000
+        val sec = time.toSecondOfDay()
+        val millisec: Int = sec*1000
         return millisec
     }
 
