@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction().apply {
-            replace(binding.framelayout1.id, FragmentStartExercise())
-            addToBackStack(null)
+            replace(R.id.framelayout1, FragmentStartExercise())
+            addToBackStack("StartExercise")
             commit()
         }
     }
