@@ -1,17 +1,18 @@
 package com.hidenobi.fragmentexercise
 
-import android.animation.ObjectAnimator
+import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.hidenobi.fragmentexercise.databinding.FragmentExerciseRunBinding
+import java.sql.Date
+import java.util.Locale
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -59,22 +60,29 @@ class ExerciseRunFragment : Fragment() {
         setFragmentResultListener("time_left") { requestKey, bundle ->
             min = bundle.getLong("hour") * 60 + bundle.getLong("min")
             binding.timeLeft.text = String.format("%02d:%02d", min, sec)
+            binding.timeInsideProgressBar.text = String.format("%02d:%02d", min, sec)
             secondSum = min * 60 + sec
             remainingTimeMillis = secondSum * 1000
             binding.circleProgress.progress = 100
             startTimer()
         }
 
-        binding.stopButton.setOnClickListener{
-            if(mIsPause){
-                resumeTimer()
-                mIsPause = false
+        binding.apply {
+            binding.stopButton.setOnClickListener{
+                if(mIsPause){
+                    resumeTimer()
+                    mIsPause = false
+                }
+                else{
+                    pauseTimer()
+                    mIsPause = true
+                }
             }
-            else{
-                pauseTimer()
-                mIsPause = true
-            }
+
+            binding.dateInsideProgressBar.text = SimpleDateFormat("dd/MM").format(Calendar.getInstance().time)
         }
+
+
     }
 
     companion object {
@@ -105,6 +113,7 @@ class ExerciseRunFragment : Fragment() {
                 remainingTimeMillis = millisUntilFinished
                 binding.apply {
                     binding.timeLeft.text = String.format("%02d:%02d", minutesRemaining, secondsRemaining)
+                    binding.timeInsideProgressBar.text = String.format("%02d:%02d", minutesRemaining, secondsRemaining)
                     binding.circleProgress.progress = ((millisUntilFinished.toFloat()/(secondSum * 1000).toFloat()) * 100).toInt()
                 }
 
