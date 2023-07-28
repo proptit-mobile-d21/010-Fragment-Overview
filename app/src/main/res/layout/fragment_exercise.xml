@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentExercise"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@drawable/blue_gradient"
+    tools:context=".fragment.ExerciseFragment">
+
+    <TextView
+        android:id="@+id/timeLeftText"
+        style="@style/header2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95dp"
+        android:text="@string/time_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="264dp"
+        android:layout_height="264dp"
+        android:layout_marginHorizontal="63dp"
+        android:layout_marginTop="72dp"
+        android:indeterminateOnly="false"
+        android:progress="30"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeLeftText" />
+
+    <TextView
+        android:id="@+id/mode"
+        style="@style/header2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeLeftText"
+        tools:text="@string/walk" />
+
+    <TextView
+        android:id="@+id/timeCount"
+        style="@style/timeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/progressBar"
+        tools:text="00:01:58" />
+
+    <TextView
+        android:id="@+id/mileInfo"
+        style="@style/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="00:00"
+        app:layout_constraintEnd_toStartOf="@+id/min_miInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
+    <TextView
+        android:id="@+id/min_miInfo"
+        style="@style/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        app:layout_constraintBottom_toBottomOf="@id/mileInfo"
+        app:layout_constraintEnd_toStartOf="@id/kcalInfo"
+        app:layout_constraintStart_toEndOf="@id/mileInfo"
+        app:layout_constraintTop_toTopOf="@id/mileInfo" />
+
+    <TextView
+        android:id="@+id/kcalInfo"
+        style="@style/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        app:layout_constraintBottom_toBottomOf="@id/min_miInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/min_miInfo"
+        app:layout_constraintTop_toTopOf="@id/min_miInfo" />
+
+    <TextView
+        style="@style/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/mile"
+        app:layout_constraintEnd_toEndOf="@id/mileInfo"
+        app:layout_constraintStart_toStartOf="@+id/mileInfo"
+        app:layout_constraintTop_toBottomOf="@id/mileInfo" />
+
+    <TextView
+        style="@style/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/min_mi"
+        app:layout_constraintEnd_toEndOf="@id/min_miInfo"
+        app:layout_constraintStart_toStartOf="@id/min_miInfo"
+        app:layout_constraintTop_toBottomOf="@id/min_miInfo" />
+
+    <TextView
+        style="@style/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/kcal"
+        app:layout_constraintEnd_toEndOf="@id/kcalInfo"
+        app:layout_constraintStart_toStartOf="@id/kcalInfo"
+        app:layout_constraintTop_toBottomOf="@id/kcalInfo" />
+
+    <ImageView
+        android:id="@+id/locationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/location_icon"
+        app:layout_constraintBottom_toBottomOf="@id/pauseBtn"
+        app:layout_constraintEnd_toStartOf="@id/pauseBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/pauseBtn" />
+
+    <ImageView
+        android:id="@+id/pauseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:src="@drawable/pause_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/lockBtn"
+        app:layout_constraintStart_toEndOf="@id/locationBtn" />
+
+    <ImageView
+        android:id="@+id/lockBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lock_icon"
+        app:layout_constraintBottom_toBottomOf="@id/pauseBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/pauseBtn"
+        app:layout_constraintTop_toTopOf="@id/pauseBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
