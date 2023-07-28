@@ -1,12 +1,17 @@
 package com.hidenobi.fragmentexercise
 
+import android.app.TimePickerDialog
 import android.content.ContentValues.TAG
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import com.hidenobi.fragmentexercise.databinding.FragmentSetTimeBinding
 
@@ -59,20 +64,72 @@ class SetTimeFragment : Fragment() {
                 .commit()
         }
 
+        binding.startEditText.setOnClickListener{
+            val c = Calendar.getInstance()
+
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                { view, hourOfDay, minute ->
+                    binding.startEditText.setText("$hourOfDay:$minute")
+                },
+                hour,
+                minute,
+                false
+            )
+            timePickerDialog.show()
+        }
+
+        binding.endEditText.setOnClickListener{
+            val c = Calendar.getInstance()
+
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                { view, hourOfDay, minute ->
+                    binding.endEditText.setText("$hourOfDay:$minute")
+                },
+                hour,
+                minute,
+                false
+            )
+            timePickerDialog.show()
+        }
+
         binding.startButton.setOnClickListener {
-            when(exerciseType){
-                1 -> {
-                    fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ExerciseRunFragment())
-                        .commit()
+            if(binding.startEditText.text.isNullOrEmpty() || binding.startEditText.text.isNullOrEmpty()){
+                Toast.makeText(context, "Start Time/End Time is empty", Toast.LENGTH_LONG).show()
+            }
+            else{
+                val time1 = binding.startEditText.text.toString()
+                val unit1 = time1.split(":")
+                val time2 = binding.endEditText.text.toString()
+                val unit2 = time2.split(":")
+                if(checkTimeInput(unit1[0].toInt(), unit1[1].toInt(), unit2[0].toInt(), unit2[1].toInt())){
+                    val hour = unit2[0].toInt() - unit1[0].toInt()
+                    val min = unit2[1].toInt() - unit1[1].toInt()
+                    setFragmentResult("time_left", bundleOf("hour" to (hour), "min" to (min)))
+                    when(exerciseType){
+                        1 -> {
+                            fragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container, ExerciseRunFragment())
+                                .commit()
+                        }
+                        2 -> {
+                            fragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container, ExerciseWalkFragment())
+                                .commit()
+                        }
+                    }
                 }
-                2 -> {
-                    fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ExerciseWalkFragment())
-                        .commit()
+                else{
+                    Toast.makeText(context, "Error Input!!!", Toast.LENGTH_LONG).show();
                 }
             }
-
         }
     }
 
@@ -93,5 +150,13 @@ class SetTimeFragment : Fragment() {
                 putString(ARG_PARAM2, param2)
             }
         }
+    }
+
+    private fun checkTimeInput(hour1 : Int, min1 : Int, hour2 : Int, min2 : Int) : Boolean{
+        if(hour1 > hour2) return false
+        if(hour1 == hour2){
+            if(min1 > min2) return false
+        }
+        return true
     }
 }

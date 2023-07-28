@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResultListener
+import com.hidenobi.fragmentexercise.databinding.FragmentExerciseRunBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,9 +22,13 @@ class ExerciseRunFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var min: Int = 0
+    private var sec: Int = 0
+    private lateinit var binding: FragmentExerciseRunBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = FragmentExerciseRunBinding.inflate(layoutInflater)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -35,6 +41,16 @@ class ExerciseRunFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_exercise_run, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentExerciseRunBinding.bind(view)
+
+        setFragmentResultListener("time_left"){requestKey, bundle ->
+            min = bundle.getInt("hour") * 60 + bundle.getInt("min")
+            binding.timeLeft.text = String.format("%02d:%02d", min, sec)
+        }
     }
 
     companion object {
