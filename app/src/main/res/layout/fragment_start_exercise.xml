@@ -52,7 +52,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/_5"
+            android:src="@drawable/walk_icon"
             android:layout_gravity="center"
             android:padding="16dp"/>
     </androidx.cardview.widget.CardView>

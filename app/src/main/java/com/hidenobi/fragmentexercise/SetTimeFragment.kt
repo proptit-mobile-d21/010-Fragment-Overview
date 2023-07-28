@@ -109,10 +109,10 @@ class SetTimeFragment : Fragment() {
                 val unit1 = time1.split(":")
                 val time2 = binding.endEditText.text.toString()
                 val unit2 = time2.split(":")
-                if(checkTimeInput(unit1[0].toInt(), unit1[1].toInt(), unit2[0].toInt(), unit2[1].toInt())){
-                    val hour = unit2[0].toInt() - unit1[0].toInt()
-                    val min = unit2[1].toInt() - unit1[1].toInt()
-                    setFragmentResult("time_left", bundleOf("hour" to (hour), "min" to (min)))
+                if(checkTimeInput(unit1[0].toLong(), unit1[1].toLong(), unit2[0].toLong(), unit2[1].toLong())){
+                    val hour = unit2[0].toLong() - unit1[0].toLong()
+                    val min = unit2[1].toLong() - unit1[1].toLong()
+                    setFragmentResult("time_left", bundleOf("hour" to hour, "min" to min))
                     when(exerciseType){
                         1 -> {
                             fragmentManager.beginTransaction()
@@ -152,7 +152,7 @@ class SetTimeFragment : Fragment() {
         }
     }
 
-    private fun checkTimeInput(hour1 : Int, min1 : Int, hour2 : Int, min2 : Int) : Boolean{
+    private fun checkTimeInput(hour1 : Long, min1 : Long, hour2 : Long, min2 : Long) : Boolean{
         if(hour1 > hour2) return false
         if(hour1 == hour2){
             if(min1 > min2) return false

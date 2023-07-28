@@ -28,9 +28,13 @@ class ExerciseRunFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var min: Int = 0
-    private var sec: Int = 0
+    private var min: Long = 0
+    private var sec: Long = 0
+    private var remainingTimeMillis: Long = 0
+    private var secondSum : Long = 0
     private lateinit var binding: FragmentExerciseRunBinding
+    private lateinit var countDownTimer: CountDownTimer
+    private var mIsPause : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,10 +57,23 @@ class ExerciseRunFragment : Fragment() {
         binding = FragmentExerciseRunBinding.bind(view)
 
         setFragmentResultListener("time_left") { requestKey, bundle ->
-            min = bundle.getInt("hour") * 60 + bundle.getInt("min")
+            min = bundle.getLong("hour") * 60 + bundle.getLong("min")
             binding.timeLeft.text = String.format("%02d:%02d", min, sec)
+            secondSum = min * 60 + sec
+            remainingTimeMillis = secondSum * 1000
             binding.circleProgress.progress = 100
-            startTimer(min)
+            startTimer()
+        }
+
+        binding.stopButton.setOnClickListener{
+            if(mIsPause){
+                resumeTimer()
+                mIsPause = false
+            }
+            else{
+                pauseTimer()
+                mIsPause = true
+            }
         }
     }
 
@@ -79,17 +96,16 @@ class ExerciseRunFragment : Fragment() {
         }
     }
 
-    private fun startTimer(minutes : Int){
-        val secondSum = min * 60
-        object : CountDownTimer((secondSum).toLong() * 1000, 1000) {
+    private fun startTimer(){
+        countDownTimer = object : CountDownTimer(remainingTimeMillis, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 val minutesRemaining = millisUntilFinished / 1000 / 60
                 val secondsRemaining = (millisUntilFinished / 1000) % 60
+                remainingTimeMillis = millisUntilFinished
                 binding.apply {
-                    binding.timeLeft.text =
-                        String.format("%02d:%02d", minutesRemaining, secondsRemaining)
-                    binding.circleProgress.progress = ((millisUntilFinished.toFloat()/(secondSum.toLong() * 1000).toFloat()) * 100).toInt()
+                    binding.timeLeft.text = String.format("%02d:%02d", minutesRemaining, secondsRemaining)
+                    binding.circleProgress.progress = ((millisUntilFinished.toFloat()/(secondSum * 1000).toFloat()) * 100).toInt()
                 }
 
             }
@@ -98,5 +114,13 @@ class ExerciseRunFragment : Fragment() {
                 Toast.makeText(context, "Timer end", Toast.LENGTH_LONG).show()
             }
         }.start()
+    }
+
+    private fun pauseTimer(){
+       countDownTimer.cancel()
+    }
+
+    private fun resumeTimer(){
+        startTimer()
     }
 }
