@@ -19,7 +19,9 @@
         android:gravity="center"
         android:layout_marginTop="114dp"
         android:layout_marginBottom="40dp"
-        android:textColor="@color/white"/>
+        android:layout_marginStart="20dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/run_button"
@@ -54,7 +56,5 @@
             android:layout_gravity="center"
             android:padding="16dp"/>
     </androidx.cardview.widget.CardView>
-
-
 
 </RelativeLayout>

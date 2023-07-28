@@ -12,19 +12,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginVertical="40dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/time_left"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/time_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
     </LinearLayout>
 
 <!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
@@ -36,8 +39,8 @@
 
     <ProgressBar
         android:id="@+id/circleProgress"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
         android:indeterminate="false"
         android:progressDrawable="@drawable/circular"
         android:background="@drawable/circle_shape"
@@ -58,10 +61,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textColor="@color/white"
                 android:layout_weight="1"
-                android:textAlignment="center"/>
+                android:text="00:00"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +74,8 @@
                 android:text="@string/mile"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="24sp"/>
 
         </LinearLayout>
 
@@ -91,15 +97,18 @@
                 android:text="00:00:18"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mile"
+                android:text="@string/min"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="24sp"/>
 
         </LinearLayout>
 
@@ -121,7 +130,9 @@
                 android:text="1.78"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,7 +140,8 @@
                 android:text="@string/kcal"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="24sp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -144,7 +156,6 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
-            android:layout_marginRight="16dp"
             app:cardBackgroundColor="@color/light_blue"
             app:cardCornerRadius="250dp"
             app:cardElevation="3dp">
@@ -167,7 +178,8 @@
             app:cardBackgroundColor="@color/light_blue"
             app:cardCornerRadius="250dp"
             app:cardElevation="3dp"
-            android:layout_marginVertical="16dp">
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -181,7 +193,6 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
-            android:layout_marginRight="16dp"
             app:cardBackgroundColor="@color/light_blue"
             app:cardCornerRadius="250dp"
             app:cardElevation="3dp">
