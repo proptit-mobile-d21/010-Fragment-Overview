@@ -8,32 +8,22 @@ import com.hidenobi.fragmentexercise.section.Time
 
 class FragmentViewModel : ViewModel() {
 
-    var startTime = MutableLiveData<String>()
-    var endTime = MutableLiveData<String>()
-    var checkTime = MutableLiveData<Boolean>()
-    var minusTime = Time.minusTime(getStartTime(), getEndTime())
-
+    private var startTime: String = ""
+    val getStartTime: String get() = startTime
+    private var endTime: String = ""
+    val getEndTime: String get() = endTime
+    private var checkTime: Boolean = false
+    val getCheckTime: Boolean get() = checkTime
     fun setStartTime(time: String){
-        startTime.value = time
-    }
-
-    fun getStartTime(): String? {
-        return startTime.value
+        startTime = time
     }
 
     fun setEndTime(time: String){
-        endTime.value = time
-    }
-
-    fun getEndTime(): String? {
-        return endTime.value
+        endTime = time
     }
 
     fun setCheckTime(res: Boolean){
-        checkTime.value = res
+        checkTime = res
     }
 
-    fun getCheckTime(): Boolean?{
-        return checkTime.value
-    }
 }

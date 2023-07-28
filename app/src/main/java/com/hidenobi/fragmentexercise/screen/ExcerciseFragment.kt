@@ -25,6 +25,9 @@ class ExcerciseFragment : Fragment() {
     private lateinit var tvRorW: TextView
     private lateinit var tvDate: TextView
     private lateinit var tvTimePassed: TextView
+    private lateinit var timeDuration: LocalTime
+    private var startTime: String = ""
+    private var endTime: String = ""
     private val viewModel: FragmentViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,6 @@ class ExcerciseFragment : Fragment() {
         binding = FragmentExcerciseBinding.inflate(inflater, container, false)
         initComponent()
 //        val time = LocalTime.parse(viewModel.getEndTime())
-        tvTimeLeft.text = Time.minusTime(viewModel.getStartTime(), viewModel.getEndTime())
         Log.d("Check", "ok")
         startTime()
         setupClickListener()
@@ -41,11 +43,13 @@ class ExcerciseFragment : Fragment() {
     }
 
     private fun startTime() {
-        val timer = object :CountDownTimer(, 1000){
+
+        val timer = object :CountDownTimer(Time.convertToMillisec(timeDuration).toLong(), 1000){
             override fun onTick(millisUntilFinished: Long) {
-                val hours = (millisUntilFinished / 1000) / 3600;
-                val mins = (millisUntilFinished / 1000) % 3600;
-                val time = String.format(Locale.getDefault(), "%02d:%02d", hours, mins)
+//
+                val mins = millisUntilFinished / 60000;
+                val secs = (millisUntilFinished % 60000) / 1000;
+                val time = String.format("%02d:%02d", mins, secs)
                 tvTimeLeft.text = time
             }
 
@@ -65,6 +69,14 @@ class ExcerciseFragment : Fragment() {
         tvDate = binding.tvDate
         tvRorW = binding.tvRorW
         tvTimePassed = binding.tvTimePassed
+
+//        viewModel.getStartTime.observe(viewLifecycleOwner) {
+//            startTime = it
+//        }
+        startTime = viewModel.getStartTime
+        endTime = viewModel.getEndTime
+        timeDuration = Time.minusTime(LocalTime.parse(startTime), LocalTime.parse(endTime))
+        Log.d("StartTime", startTime)
     }
 
 

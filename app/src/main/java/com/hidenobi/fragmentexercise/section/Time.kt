@@ -29,20 +29,24 @@ object Time {
         return resTime
     }
 
-    fun minusTime(start: String?, end: String?): String {
-        var sTime = LocalTime.parse(start)
-        var eTime = LocalTime.parse(end)
+    fun minusTime(start: LocalTime, end: LocalTime): LocalTime {
+        var sTime = start
+        var eTime = end
         eTime = eTime.minusHours(sTime.hour.toLong())
         eTime = eTime.minusMinutes(sTime.minute.toLong())
         Log.d("Checkingg", sTime.hour.toString())
         Log.d("Checkingg", sTime.toString())
         Log.d("Checkingg", eTime.hour.toString())
         Log.d("Checkingg", eTime.toString())
-        return eTime.toString()
+        return eTime
     }
 
-    fun countDown(time: LocalTime): LocalTime {
-        time.minusMinutes(1)
-        return time
+    fun convertToMillisec(time: LocalTime): Int {
+        val min = time.minute
+        val sec = time.second
+        val millisec: Int = min*60000 + sec*1000
+        return millisec
     }
+
+
 }

@@ -94,7 +94,7 @@ class SetTimeFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        if(viewModel.getCheckTime() == true){
+        if(viewModel.getCheckTime){
             etStart.text = Time.convertToValideTime(hourOfDay) + ":" + Time.convertToValideTime(minute)
         }else{
             etEnd.text = Time.convertToValideTime(hourOfDay) + ":" + Time.convertToValideTime(minute)
