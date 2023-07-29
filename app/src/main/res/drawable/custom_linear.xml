@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#2196F3"/> <!-- Màu cho các cạnh bên còn lại (ví dụ: Đỏ) -->
+    <corners android:radius="0dp" /> <!-- Để có góc vuông cho hình chữ nhật -->
+    <padding android:left="0dp" android:top="0dp" android:right="10dp" android:bottom="0dp" /> <!-- Chỉ định lề cho các cạnh -->
+</shape>
