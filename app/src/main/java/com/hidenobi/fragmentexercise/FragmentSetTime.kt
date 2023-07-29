@@ -11,8 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import com.hidenobi.fragmentexercise.databinding.FragmentSetTimeBinding
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -23,10 +26,10 @@ class FragmentSetTime : Fragment() {
     private lateinit var view: View
     private var _binding: FragmentSetTimeBinding? = null
     private val binding get() = _binding!!
-    private var start_hour: Int = 0
-    private var start_min: Int = 0
-    private var end_hour: Int = 0
-    private var end_min: Int = 0
+    private var start_hour: Long = 0
+    private var start_min: Long = 0
+    private var end_hour: Long = 0
+    private var end_min: Long = 0
 
 
     override fun onCreateView(
@@ -36,12 +39,6 @@ class FragmentSetTime : Fragment() {
         _binding = FragmentSetTimeBinding.inflate(inflater, container, false)
         view = binding.root
 
-        binding.btnstart.setOnClickListener {
-            val nextFr = FragmentExercise()
-            val fm: FragmentTransaction? =
-                requireActivity().supportFragmentManager?.beginTransaction()
-            fm?.replace(R.id.framelayout1, nextFr)?.addToBackStack("Exercise")?.commit()
-        }
         val toolbar = binding.timetoolbar
         val activity = requireActivity() as AppCompatActivity
         activity.setSupportActionBar(toolbar)
@@ -62,10 +59,20 @@ class FragmentSetTime : Fragment() {
         cal.set(Calendar.HOUR_OF_DAY, h)
         val formattedTime1 = fm.format(cal.time)
         timeend.text = formattedTime1
-        start_hour = h
-        start_min = m
-        end_hour = h
-        end_min = m + 10
+        start_hour = h.toLong()
+        start_min = m.toLong()
+        end_hour = h.toLong()
+        end_min = (m + 10).toLong()
+
+        binding.btnstart.setOnClickListener {
+            val hour = end_hour - start_hour
+            val min = end_min - start_min
+            setFragmentResult("time_left", bundleOf("hour" to hour, "min" to min))
+            val nextFr = FragmentExercise()
+            val fm: FragmentTransaction? =
+                requireActivity().supportFragmentManager?.beginTransaction()
+            fm?.replace(R.id.framelayout1, nextFr)?.addToBackStack("Exercise")?.commit()
+        }
 
 
         timestart.setOnClickListener {
@@ -80,8 +87,8 @@ class FragmentSetTime : Fragment() {
                     val format = SimpleDateFormat("HH:mm")
                     val time: String = format.format(c.time)
 
-                    start_hour = hour
-                    start_min = minute
+                    start_hour = hour.toLong()
+                    start_min = minute.toLong()
                     validateTimeEnd()
                     timestart.text = time
                 }, hours, minutes, true
@@ -98,11 +105,11 @@ class FragmentSetTime : Fragment() {
                 TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                     val c = Calendar.getInstance()
 
-                    end_hour = hour
-                    end_min = minute
+                    end_hour = hour.toLong()
+                    end_min = minute.toLong()
                     validateTimeEnd()
-                    c.set(Calendar.HOUR_OF_DAY, end_hour)
-                    c.set(Calendar.MINUTE, end_min)
+                    c.set(Calendar.HOUR_OF_DAY, end_hour.toInt())
+                    c.set(Calendar.MINUTE, end_min.toInt())
                     val format = SimpleDateFormat("HH:mm")
                     val time = format.format(c.time)
                     timeend.text = time
