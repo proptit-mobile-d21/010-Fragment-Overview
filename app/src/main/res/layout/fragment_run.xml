@@ -8,11 +8,12 @@
     android:orientation="vertical"
     >
     <FrameLayout
-        android:layout_weight="4"
+
         android:id="@+id/flTimer"
         android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center">
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp">
         <ProgressBar
             android:id="@+id/pbTimer"
             android:layout_width="250dp"
@@ -56,10 +57,11 @@
         </LinearLayout>
     </FrameLayout>
     <LinearLayout
-        android:layout_weight="2"
+
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="48dp">
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -84,6 +86,11 @@
                 android:gravity="center"
                 />
         </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF" />
+
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -109,10 +116,15 @@
                 />
 
         </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF" />
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_linear"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
@@ -136,15 +148,33 @@
         </LinearLayout>
 
     </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_weight="1"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:id="@+id/btnPlayPause"
-        android:background="@drawable/button_bg"
-        android:text="Start"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/location"
+            android:layout_marginBottom="30dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/btnPlayPause"
+            android:background="@drawable/button_bg"
+            android:text="Start"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+        <ImageView
+            android:layout_marginBottom="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/frame_72"
+            />
+    </LinearLayout>
 </LinearLayout>
