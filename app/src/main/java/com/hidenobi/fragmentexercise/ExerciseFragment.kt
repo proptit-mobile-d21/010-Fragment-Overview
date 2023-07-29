@@ -49,9 +49,15 @@ class ExerciseFragment : Fragment() {
             val inputSeconds = dataTime!!
             val totalMilliseconds = inputSeconds * 1000
             binding.textTime.setText("$dataTime")
+
             countDownTimer = object : CountDownTimer(totalMilliseconds, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     val secondsRemaining = millisUntilFinished / 1000
+                    val progress = (totalMilliseconds - millisUntilFinished) /1000
+                    val max = totalMilliseconds / 1000
+                    binding.progress.progress = progress.toInt()
+                    binding.progress.max = max.toInt()
+
                     dataMM = secondsRemaining / 60
                     dataSS = secondsRemaining - dataMM!! * 60
                     dataMmStr = dataMM.toString()
@@ -65,10 +71,11 @@ class ExerciseFragment : Fragment() {
                     binding.textTime.text = dataMmStr + " : " + dataSsStr
                 }
                 override fun onFinish() {
+                    binding.progress.progress = 0
+                    binding.progress.max = 0
                     Toast.makeText(context, "Hoàn thành",Toast.LENGTH_SHORT ).show()
                 }
             }.start()
         }
-
     }
 }
