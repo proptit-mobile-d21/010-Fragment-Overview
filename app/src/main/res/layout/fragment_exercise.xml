@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentExercise"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_run"
+    android:paddingTop="16dp"
+    android:paddingBottom="40dp"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/horizontalbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/line_1"
+        android:indeterminateOnly="false"
+        android:progress="50"
+        app:trackColor="@color/transparent"
+        app:trackThickness="8dp"
+        app:trackCornerRadius="20dp"
+        app:indicatorColor="@color/white"
+        android:layout_marginTop="8dp"
+        />
+    
+    <TextView
+        android:id="@+id/txt_timeleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/horizontalbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Time left - 23:59"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/circularbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_timeleft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="72dp"
+        app:trackColor="@color/transparent"
+        app:indicatorColor="@color/white"
+        app:trackThickness="24dp"
+        app:indicatorSize="288dp"
+        android:background="@drawable/circular_bg"
+        android:progress="30"
+        app:trackCornerRadius="20dp"
+        />
+    <TextView
+        android:id="@+id/maintext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Run"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/txt_timecount"
+        app:layout_constraintLeft_toLeftOf="@+id/circularbar"
+        app:layout_constraintRight_toRightOf="@+id/circularbar"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txt_timecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/circularbar"
+        app:layout_constraintBottom_toBottomOf="@id/circularbar"
+        app:layout_constraintRight_toRightOf="@id/circularbar"
+        app:layout_constraintLeft_toLeftOf="@id/circularbar"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="56sp"
+        tools:text="01:58" />
+
+    <ImageView
+        android:id="@+id/btn_pause"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        app:layout_constraintTop_toBottomOf="@id/circularbar"
+        android:background="@drawable/circle_button"
+        android:src="@drawable/pause_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="96dp"
+        android:padding="16dp"
+        />
+    <ImageView
+        android:id="@+id/btn_left"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:layout_constraintRight_toLeftOf="@id/btn_pause"
+        app:layout_constraintBottom_toBottomOf="@id/btn_pause"
+        app:layout_constraintTop_toTopOf="@id/btn_pause"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:src="@drawable/left_icon"
+        android:background="@drawable/circle_button"
+        android:padding="16dp"/>
+
+    <ImageView
+        android:id="@+id/btn_right"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:layout_constraintLeft_toRightOf="@id/btn_pause"
+        app:layout_constraintBottom_toBottomOf="@id/btn_pause"
+        app:layout_constraintTop_toTopOf="@id/btn_pause"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/right_icon"
+        android:background="@drawable/circle_button"
+        android:padding="16dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
