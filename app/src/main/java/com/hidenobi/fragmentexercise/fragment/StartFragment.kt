@@ -19,5 +19,24 @@ class StartFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.btnRun.setOnClickListener {
+            selectExercise("Run")
+        }
+
+        binding.btnWalk.setOnClickListener {
+            selectExercise("Walk")
+        }
+    }
+
+    private fun selectExercise(type: String) {
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            val setTimeFragment = SetTimeFragment.newInstance(type)
+            replace(binding.fragmentStart.id, setTimeFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
 }

@@ -14,7 +14,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val startFragment = StartFragment()
-        supportFragmentManager.beginTransaction().replace(binding.main.id, startFragment).commit()
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.main.id, startFragment)
+            addToBackStack(null)
+            commit()
+        }
     }
 }
 
