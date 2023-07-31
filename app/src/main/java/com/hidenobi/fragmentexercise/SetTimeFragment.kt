@@ -15,7 +15,7 @@ class SetTimeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = SetTimeBinding.inflate(inflater, container, false)
         val start = binding.startButton
         val startTime = binding.startTime
@@ -25,39 +25,30 @@ class SetTimeFragment : Fragment() {
         backButton.setOnClickListener{
             parentFragmentManager.popBackStack()
         }
+        val exerciseFragment = ExerciseFragment()
         start.setOnClickListener {
             if (isValidTime(startTime.text.toString(), endTime.text.toString())) {
                 val bundle = Bundle().apply {
                     putString("startTime", startTime.text.toString())
                     putString("endTime", endTime.text.toString())
                 }
-                when (dataFromActivity) {
-                    "run" -> {
-                        val runFragment = RunFragment().apply {
-                            arguments = bundle
+                when(dataFromActivity){
+                    "run"->{
+                        bundle.apply {
+                            putInt("backgroundResource", R.drawable.exercise_run_background)
                         }
-                        parentFragmentManager.beginTransaction()
-                            .replace(R.id.set_time_layout, runFragment)
-                            .addToBackStack(null)
-                            .commit()
                     }
-
-                    "walk" -> {
-                        val walkFragment = WalkFragment().apply {
-                            arguments = bundle
+                    "walk"->{
+                        bundle.apply {
+                            putInt("backgroundResource", R.drawable.exercise_walk_background)
                         }
-                        parentFragmentManager.beginTransaction()
-                            .replace(R.id.set_time_layout, walkFragment)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                    else -> {
-                        Toast.makeText(
-                            requireContext(), "Please choose your exercise again !",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
+                exerciseFragment.arguments = bundle
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.set_time_layout, exerciseFragment)
+                    .addToBackStack(null)
+                    .commit()
             } else {
                 Toast.makeText(
                     requireContext(), "Invalid time !",
